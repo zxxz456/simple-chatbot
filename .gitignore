@@ -1,0 +1,52 @@
+# ─── Byte-compiled / cached ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ─── Packaging / build artifacts ──────────────────────────────────────────
+build/
+dist/
+wheels/
+*.egg
+*.egg-info/
+*.whl
+pip-wheel-metadata/
+
+# ─── Virtual environments ─────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ─── Tool caches ──────────────────────────────────────────────────────────
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+
+# ─── IDEs / editors ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── OS ───────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Project-local state ──────────────────────────────────────────────────
+# SQLite stores (history persistence — planned feature)
+*.db
+*.sqlite
+*.sqlite3
+
+# Local config overrides (never commit secrets or per-user prompts)
+config.local.yml
+.env
+.env.*

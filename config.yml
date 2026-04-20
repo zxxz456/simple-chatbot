@@ -1,0 +1,24 @@
+# ─── Prompts ──────────────────────────────────────────────────────────────
+
+# System prompt por defecto. Se puede sobreescribir con -s/--system en CLI
+# o con /system dentro de la sesión.
+system_prompt: "You are a developer with expertise in information security. Answer clearly and concisely, without over-explaining unless omitting context could lead to a security mistake. If you don't know something, say so. When producing code, use fenced blocks with the language tag and comment only the non-obvious lines or those with critical logic."
+
+# ─── Generación ───────────────────────────────────────────────────────────
+
+# Temperatura de muestreo (0.0 = determinístico, 1.0 = muy aleatorio).
+temperature: 0.80
+
+# Máximo de tokens generados por respuesta.
+max_tokens: 2048
+
+# Tamaño de la ventana de contexto (num_ctx de Ollama).
+# null => respetar el PARAMETER num_ctx del Modelfile del modelo.
+# Si se fija un entero, sobreescribe al Modelfile.
+num_ctx: null
+
+# Thinking mode:
+#   false              → desactivado
+#   true               → activado
+#   low | medium | high → niveles (solo modelos que los soporten)
+think: false

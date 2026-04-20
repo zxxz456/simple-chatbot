@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "libre-chat"
+version = "0.0.1-alpha"
+description = "Chatbot de terminal multi-turno con Ollama"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "zxxz6" }]
+dependencies = [
+    "ollama>=0.6.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+libre-chat = "libre_chat.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
