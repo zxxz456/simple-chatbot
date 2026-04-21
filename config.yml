@@ -2,7 +2,7 @@
 
 # System prompt por defecto. Se puede sobreescribir con -s/--system en CLI
 # o con /system dentro de la sesión.
-system_prompt: "You are a developer with expertise in information security. Answer clearly and concisely, without over-explaining unless omitting context could lead to a security mistake. If you don't know something, say so. When producing code, use fenced blocks with the language tag and comment only the non-obvious lines or those with critical logic."
+system_prompt: "You are an assistant for answering questions and chatting with the user, your name is Crotolamo"
 
 # ─── Generación ───────────────────────────────────────────────────────────
 
@@ -22,3 +22,9 @@ num_ctx: null
 #   true               → activado
 #   low | medium | high → niveles (solo modelos que los soporten)
 think: false
+
+# ─── Almacenamiento ───────────────────────────────────────────────────────
+
+# Ruta al archivo SQLite donde se guardan sesiones y mensajes.
+# null => XDG default (~/.local/share/libre_chat/history.db)
+db_path: /home/zxxz6/simple_chatbot/history.db
