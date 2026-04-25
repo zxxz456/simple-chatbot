@@ -1,4 +1,4 @@
-# libre-chat
+# libre-chat 
 
 A multi-turn terminal chatbot for local LLMs served by
 [Ollama](https://ollama.com). Keeps a clean split between the REPL,
