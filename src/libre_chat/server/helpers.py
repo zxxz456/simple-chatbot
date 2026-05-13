@@ -100,14 +100,24 @@ def touch_session(conn: Connection, session_id: int) -> None:
 def load_characters_by_ids(
     conn: Connection, ids: Iterable[int]
 ) -> list[CharacterOut]:
-    """Carga personajes por id usando un IN dinámico (vacío → ``[]``)."""
+    """Carga personajes por id usando un IN dinámico (vacío → ``[]``).
+
+    Description:
+        Usa ``exec_driver_sql`` con placeholders ``?`` posicionales
+        del DBAPI de SQLite. Intentar lo equivalente con
+        ``text(...).bindparams(*id_list)`` no funciona: ``bindparams``
+        espera ``BindParameter`` objects, no enteros crudos, y
+        revienta con ``AttributeError: 'int' object has no
+        attribute '_orig_key'``.
+    """
     id_list = list(ids)
     if not id_list:
         return []
-    rows = conn.execute(text(
-        f"SELECT {CHAR_COLS} FROM characters "
-        f"WHERE id IN ({','.join('?' * len(id_list))})"
-    ).bindparams(*id_list)).fetchall()
+    placeholders = ",".join("?" * len(id_list))
+    rows = conn.exec_driver_sql(
+        f"SELECT {CHAR_COLS} FROM characters WHERE id IN ({placeholders})",
+        tuple(id_list),
+    ).fetchall()
     return [char_row_to_out(r) for r in rows]
 
 

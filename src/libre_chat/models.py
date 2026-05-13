@@ -156,5 +156,13 @@ class Message(SQLModel, table=True):
     """``eval_duration`` in nanoseconds. Combined with
     ``output_tokens`` to compute tokens/sec on replay."""
 
+    character_id: Optional[int] = None
+    """Id del personaje (multi-character mobile) que emitió este
+    mensaje, o None para usuario / assistant clásico. La columna la
+    crea el server en su migración SQL cruda; el CLI la ignora.
+    Declarada aquí (sin ``foreign_key``) para que el ORM la hidrate
+    al hacer ``SELECT`` — sin esto, ``msg_to_out`` siempre devolvía
+    ``None`` y el móvil perdía la asociación al re-abrir la sesión."""
+
     session: Optional[ChatSession] = Relationship(back_populates="messages")
     """Forward relationship back to the owning ``ChatSession``."""
