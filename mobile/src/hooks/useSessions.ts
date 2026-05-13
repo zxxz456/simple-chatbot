@@ -93,6 +93,7 @@ export function useSessionList(trigger = 0): UseSessionListResult {
  */
 export function useOpenSession(): (sessionId: number) => Promise<boolean> {
   const loadSession = useChatStore((s) => s.loadSession);
+  const setLastInputTokens = useChatStore((s) => s.setLastInputTokens);
   const upsertCache = useCharactersCache((s) => s.upsert);
 
   return useCallback(
@@ -122,12 +123,19 @@ export function useOpenSession(): (sessionId: number) => Promise<boolean> {
           characters: active,
           messages,
         });
+        // Restaurar el medidor de contexto: el último turno de
+        // assistant guardó prompt_eval_count del modelo. Sin esto la
+        // barra arranca en 0% hasta que el usuario manda otro turno.
+        const lastAssistant = [...messages]
+          .reverse()
+          .find((m) => m.role === 'assistant' && m.inputTokens !== undefined);
+        setLastInputTokens(lastAssistant?.inputTokens ?? 0);
         return true;
       } catch {
         return false;
       }
     },
-    [loadSession, upsertCache],
+    [loadSession, setLastInputTokens, upsertCache],
   );
 }
 
