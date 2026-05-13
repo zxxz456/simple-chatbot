@@ -13,10 +13,13 @@ dependencies = [
     "ollama>=0.6.0",
     "pyyaml>=6.0",
     "sqlmodel>=0.0.22",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
 ]
 
 [project.scripts]
 libre-chat = "libre_chat.cli:main"
+libre-chat-server = "libre_chat.server:run"
 
 [tool.setuptools.packages.find]
 where = ["src"]
