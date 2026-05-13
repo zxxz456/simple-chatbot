@@ -1,0 +1,24 @@
+# React Native / Metro
+node_modules/
+.expo/
+*.log
+npm-debug.*
+yarn-error.*
+
+# Native build outputs
+android/app/build/
+android/app/.cxx/
+android/build/
+android/.gradle/
+android/local.properties
+ios/Pods/
+ios/build/
+ios/*.xcworkspace/xcuserdata/
+*.xcuserstate
+DerivedData/
+
+# Misc
+.DS_Store
+*.keystore
+!debug.keystore
+.env
